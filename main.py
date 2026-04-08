@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes import auth, events, challenges, leaderboard, projects, team
 from database import db   
+from fastapi import Response
 
 app = FastAPI(title="Club Hub API", version="1.0.0")
 
@@ -33,9 +34,6 @@ async def debug_users():
 def root():
     return {"message": "Club Hub API is running"}
 
-@app.get("/health")
+@app.api_route("/health", methods=["GET", "HEAD"])
 def health_check():
-    return {
-        "status": "ok",
-        "service": "Club Hub API"
-    }
+    return Response(status_code=200)

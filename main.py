@@ -32,3 +32,10 @@ async def debug_users():
 @app.get("/")
 def root():
     return {"message": "Club Hub API is running"}
+
+@app.get("/health")
+def health_check():
+    return {
+        "status": "ok",
+        "service": "Club Hub API"
+    }

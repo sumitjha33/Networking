@@ -40,7 +40,7 @@ async def signup(body: SignupBody):
         "email": body.email,
         "password": hash_password(body.password),
         "skills": body.skills,
-        "role": "member",
+        "role": "admin",
         "score": 0,
         "bio": "",
         "github": "",
@@ -51,7 +51,7 @@ async def signup(body: SignupBody):
     token = create_token({"id": str(result.inserted_id)})
     return {
         "success": True,
-        "data": {"id": str(result.inserted_id), "name": body.name, "email": body.email, "role": "member"},
+        "data": {"id": str(result.inserted_id), "name": body.name, "email": body.email, "role": "admin"},
         "token": token
     }
 
@@ -78,6 +78,6 @@ async def get_me(current_user=Depends(get_current_user)):
             "email": current_user["email"],
             "skills": current_user.get("skills", []),
             "score": current_user.get("score", 0),
-            "role": current_user.get("role", "member")
+            "role": current_user.get("role", "admin")
         }
     }

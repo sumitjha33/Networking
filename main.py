@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from routes import auth, events, challenges, leaderboard, projects, team
 from database import db   
 from fastapi import Response
+from routes import recommendations
+
 
 app = FastAPI(title="Club Hub API", version="1.0.0")
 
@@ -20,6 +22,7 @@ app.include_router(challenges.router,  prefix="/api/v1/challenges",  tags=["Chal
 app.include_router(leaderboard.router, prefix="/api/v1/leaderboard", tags=["Leaderboard"])
 app.include_router(projects.router,    prefix="/api/v1/projects",    tags=["Projects"])
 app.include_router(team.router,        prefix="/api/v1/team",        tags=["Team"])
+
 
 
 @app.get("/debug-users")
